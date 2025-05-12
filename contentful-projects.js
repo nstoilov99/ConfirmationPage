@@ -2,7 +2,7 @@
 const spaceId = window.CONTENTFUL_SPACE_ID || "dcbc6hw4xwex";
 const accessToken = window.CONTENTFUL_ACCESS_TOKEN || "itCC6ej9lB7xqnAGtcq81IRYvMkP-XsG2sKH0AI3TiI";
 
-    try {
+   try {
       const response = await fetch(
         `https://cdn.contentful.com/spaces/${spaceId}/environments/master/entries?access_token=${accessToken}&content_type=projectsPage&include=2`
       );
@@ -12,18 +12,21 @@ const accessToken = window.CONTENTFUL_ACCESS_TOKEN || "itCC6ej9lB7xqnAGtcq81IRYv
       }
 
       const data = await response.json();
-      console.log("Full API Response:", data); // Debug line
-
-      const projects = data.items || [];
-      const assets = data.includes?.Asset || [];
-
-      if (projects.length === 0) {
-        document.getElementById("projects-list").innerHTML = "<p>No projects found.</p>";
-        return;
+      console.log("Full API Response:", data); // Debugging line
+      if (!data.items) {
+        throw new Error("API response does not contain 'items'. Make sure your 'content_type' is correct.");
       }
+
+      const projects = data.items;
+      const assets = data.includes?.Asset || [];
 
       const projectContainer = document.getElementById("projects-list");
       projectContainer.innerHTML = "";
+
+      if (projects.length === 0) {
+        projectContainer.innerHTML = "<p>No projects found.</p>";
+        return;
+      }
 
       projects.forEach(project => {
         const projectData = project.fields;

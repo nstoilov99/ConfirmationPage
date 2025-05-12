@@ -1,6 +1,6 @@
  document.addEventListener("DOMContentLoaded", async () => {
-const spaceId = process.env.CONTENTFUL_SPACE_ID;
-const accessToken = process.env.CONTENTFUL_ACCESS_TOKEN;
+const spaceId = window.CONTENTFUL_SPACE_ID || "dcbc6hw4xwex";
+const accessToken = window.CONTENTFUL_ACCESS_TOKEN || "itCC6ej9lB7xqnAGtcq81IRYvMkP-XsG2sKH0AI3TiI";
 
     try {
       const response = await fetch(

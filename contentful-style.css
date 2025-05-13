@@ -1,30 +1,31 @@
-
-/* Contentful Projects Page Styles */
-
+/* Base Styles */
 body {
-  margin: 0;
   font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #0e0e0e;
   color: #e0e0e0;
+  margin: 0;
 }
 
+/* Header and Footer */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
   background-color: #121212;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  font-size: 1.5em;
-  font-weight: 600;
-  color: #ff9900;
+footer {
+  background-color: #111;
+  color: #888;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  width: 100%;
 }
 
+/* Project Section */
 main {
   padding: 60px 20px;
   display: flex;
@@ -33,12 +34,13 @@ main {
 }
 
 .wrapper {
-  max-width: 900px;
+  max-width: 1200px;
   width: 100%;
   padding: 40px;
   background-color: #1a1a1a;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(255, 153, 0, 0.12);
+  text-align: center;
 }
 
 h1 {
@@ -51,38 +53,196 @@ h1 {
 .project-card {
   background: #1a1a1a;
   border: 1px solid #333;
-  border-radius: 8px;
-  padding: 1.5em;
-  margin: 20px 0;
-  text-align: left;
-  box-shadow: 0 0 10px rgba(255, 153, 0, 0.1);
-}
-
-.project-card img {
-  max-width: 100%;
-  border-radius: 8px;
-  margin-top: 15px;
-}
-
-.project-card a {
-  display: inline-block;
-  margin-top: 10px;
-  color: #ff9900;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.2s;
-}
-
-.project-card a:hover {
-  color: #fff;
-}
-
-footer {
-  background-color: #111;
-  color: #888;
-  text-align: center;
+  border-radius: 12px;
   padding: 20px;
-  position: relative;
-  bottom: 0;
+  margin: 20px auto;
+  max-width: 100%;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(255, 153, 0, 0.1);
+}
+
+.project-card h3 {
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #ff9900;
+  margin-bottom: 15px;
+}
+
+.project-description {
+  font-size: 1em;
+  color: #e0e0e0;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Video Styling */
+.video-container {
+  margin-bottom: 15px;
+}
+
+.project-video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Image Grid (Full Width) */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.project-image:hover {
+  transform: scale(1.02);
+}
+
+/* Lightbox Styles */
+body.blurred {
+  overflow: hidden;
+  position: relative;
+}
+
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  flex-direction: column;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+#lightbox.zoom-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+#lightbox.zoom-out {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+#lightbox img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 12px;
+  transition: transform 0.3s;
+}
+
+#lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+#lightbox .navigation {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Prevents interference */
+  z-index: 1001;
+}
+
+#lightbox .navigation button {
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  font-size: 2.5em;
+  color: #fff;
+  cursor: pointer;
+  padding: 0 20px;
+  pointer-events: auto; /* Allows clicking */
+  transition: color 0.2s, background 0.2s;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+}
+
+#lightbox .navigation button:hover {
+  color: #ff9900;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* Lightbox Animation */
+#lightbox.show {
+  display: flex;
+  opacity: 1;
+}
+
+#lightbox.hide {
+  opacity: 0;
+}
+
+/* GitHub Card - Cleaned Style */
+.github-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 15px;
+  background-color: #333;
+  border: 1px solid #444;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #ff9900;
+  transition: background 0.2s, transform 0.2s;
+  margin-top: 25px; /* Increased margin for padding effect */
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.github-card a {
+  display: flex;
+  align-items: center;
+  text-decoration: none; /* No underline */
+  color: #ff9900;
+  font-weight: 600;
+}
+
+.github-card a:hover {
+  color: #ffcc00;
+}
+
+.github-card img {
+  height: 24px;
+  margin-right: 8px;
+}
+
+.github-card:hover {
+  background-color: #444;
+  transform: scale(1.05);
+}
+
+/* Padding between Images and GitHub Card */
+.image-grid {
+  margin-bottom: 20px; /* Adds space between images and GitHub card */
 }
